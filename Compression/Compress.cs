@@ -2,9 +2,17 @@
 
 namespace alfadva.Compression;
 
+/// <summary>
+/// Compresses text by removing vowels
+/// </summary>
 public class Compress
 {
     
+    /// <summary>
+    /// Compresses text by removing vowels
+    /// </summary>
+    /// <param name="inputText"></param>
+    /// <returns>edited text</returns>
     public string StartCompression(string inputText)
     {
         var words = inputText.Split(new[] {' ', '\t', '\n', '\r'}, StringSplitOptions.RemoveEmptyEntries);

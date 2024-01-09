@@ -3,19 +3,27 @@ using alfadva.FileManagement;
 
 namespace alfadva.ConsoleOutput;
 
+/// <summary>
+///    Class for printing out to the console.
+/// </summary>
 public class Printer
 {
-    private static string errorMessage;
+    private static string _errorMessage = "";
 
-    public static (string, string) Start()
+    /// <summary>
+    /// Starts the User Input and returns the input and output file paths.
+    /// </summary>
+    /// <returns>input/output files</returns>
+    /// <exception cref="Exception"></exception>
+    public static (string?, string?) Start()
     {
         while (true)
         {
             Console.Clear();
-            if (errorMessage != null)
+            if (_errorMessage != null)
             {
                 ColorConsole.Rd();
-                Console.WriteLine(errorMessage);
+                Console.WriteLine(_errorMessage);
             }
 
             ColorConsole.Wh();
@@ -67,20 +75,25 @@ public class Printer
             }
             catch (Exception e)
             {
-                errorMessage = e.Message;
+                _errorMessage = e.Message;
             }
         }
     }
 
+    /// <summary>
+    /// Enter the input file path.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public static string EnterInputFile()
     {
         while (true)
         {
             Console.Clear();
-            if (errorMessage != null)
+            if (_errorMessage != null)
             {
                 ColorConsole.Rd();
-                Console.WriteLine(errorMessage);
+                Console.WriteLine(_errorMessage);
             }
 
             ColorConsole.Wh();
@@ -88,22 +101,27 @@ public class Printer
             try
             {
                 ColorConsole.Yl();
-                string input = Console.ReadLine();
-                if (input.Contains(".txt") && File.Exists(input))
+                var input = Console.ReadLine();
+                if (input != null && input.Contains(".txt") && File.Exists(input))
                 {
                     return input;
-                    errorMessage = null;
+                    _errorMessage = null;
                     break;
                 }
                 else throw new Exception("File does not exist or is not a .txt file.");
             }
             catch (Exception e)
             {
-                errorMessage = e.Message;
+                _errorMessage = e.Message;
             }
         }
     }
 
+    /// <summary>
+    /// Enter the output file path.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public static string EnterOutputFile()
     {
         while (true)
@@ -114,11 +132,11 @@ public class Printer
             try
             {
                 ColorConsole.Yl();
-                string input = Console.ReadLine();
-                if (input.Contains(".txt"))
+                var input = Console.ReadLine();
+                if (input != null && input.Contains(".txt"))
                 {
                     return input;
-                    errorMessage = null;
+                    _errorMessage = null;
                     break;
                 }
                 else throw new Exception("File must be a .txt file.");
@@ -130,6 +148,11 @@ public class Printer
         }
     }
 
+    /// <summary>
+    /// Prints out the input and output file paths.
+    /// </summary>
+    /// <param name="inputFile"></param>
+    /// <param name="outputFile"></param>
     public static void FilePathLoaded(string inputFile, string outputFile)
     {
         Console.Clear();
@@ -141,6 +164,9 @@ public class Printer
         Console.ReadKey();
     }
 
+    /// <summary>
+    /// Prints out the log.
+    /// </summary>
     public static void PrintLog()
     {
         Console.Clear();
@@ -151,6 +177,11 @@ public class Printer
         Console.ReadKey();
     }
 
+    /// <summary>
+    /// Prints out the compression has finished message.
+    /// </summary>
+    /// <param name="inputFile"></param>
+    /// <param name="outputFile"></param>
     public static void Finish(string inputFile, string outputFile)
     {
         Console.Clear();
@@ -170,6 +201,9 @@ public class Printer
         Console.ReadKey();
     }
 
+    /// <summary>
+    /// Prints out the file does not exist message.
+    /// </summary>
     public static void FileDoesntExist()
     {
         Console.Clear();

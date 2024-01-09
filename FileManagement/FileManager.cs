@@ -1,7 +1,15 @@
 ﻿namespace alfadva.FileManagement;
 
+/// <summary>
+/// FileManager class is used for reading and writing to files.
+/// </summary>
 public class FileManager
 {
+    /// <summary>
+    /// Reads the file from the given path.
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public static string Read(string path)
     {
         try
@@ -11,10 +19,15 @@ public class FileManager
         catch (Exception e)
         {
             Console.WriteLine($"Error has occured while trying to read the file:\n {e.Message}");
-            return null;
+            return "";
         }
     }
 
+    /// <summary>
+    /// Writes the given content to the file on the given path.
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="content"></param>
     public static void Write(string path, string content)
     {
         try

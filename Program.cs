@@ -5,16 +5,22 @@ using alfadva.ConsoleOutput;
 
 namespace alfadva
 {
+    /// <summary>
+    /// Main class of the program
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method of the program
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             // Declaration
             Compress cm = new Compress();
-            var inputFile = "InputText.txt";
-            var outputFile = "OutputText.txt";
+            string inputFile;
+            string outputFile;
 
-            
 
             // User Input
             while (true)
